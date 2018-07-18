@@ -48,10 +48,12 @@ If you are new to Marvin check the following links before diving into the full d
 * More :ref:`tutorials <marvin-tutorials>` and :ref:`frequently asked questions <marvin-faq>`.
 
 
+Marvin at a Glance
+------------------
+
 .. toctree::
    :maxdepth: 2
    :glob:
-   :caption: Marvin at a Glance
 
    installation
    cheatsheet
@@ -106,9 +108,12 @@ If you are new to Marvin check the following links before diving into the full d
 .. :doc:`API <api>`
 .. ----------------
 
+User Docs
+---------
+
 .. toctree::
    :maxdepth: 3
-   :caption: User Docs
+   :glob:
 
    tools/index
 
@@ -123,10 +128,11 @@ If you are new to Marvin check the following links before diving into the full d
 .. * :doc:`datamodel/mpl5`
 .. * :doc:`datamodel/mpl6`
 
+API/Code Reference
+------------------
 
 .. toctree::
    :maxdepth: 2
-   :caption: API/Code Reference
 
    api/index
 
