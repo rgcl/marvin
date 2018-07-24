@@ -8,20 +8,17 @@
 # @Copyright: José Sánchez-Gallego
 
 
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
+from __future__ import absolute_import, division, print_function
 
 import copy
 import inspect
-import itertools
-import six
 import warnings
 
 import astropy.io.fits
 import astropy.wcs
 import numpy as np
 import pandas as pd
+import six
 
 import marvin
 import marvin.api.api
@@ -30,16 +27,16 @@ import marvin.tools.cube
 import marvin.tools.modelcube
 import marvin.tools.quantities.map
 import marvin.tools.spaxel
-import marvin.utils.general.general
 import marvin.utils.dap.bpt
-
-from marvin.core.core import MarvinToolsClass, NSAMixIn, DAPallMixIn
+import marvin.utils.general.general
+from marvin.core.core import DAPallMixIn, MarvinToolsClass, NSAMixIn
 from marvin.utils.datamodel.dap import datamodel
-from marvin.utils.datamodel.dap.base import Property, Channel
+from marvin.utils.datamodel.dap.base import Channel, Property
 from marvin.utils.general import FuzzyDict, turn_off_ion
 from marvin.utils.general.maskbit import get_manga_target
 
 from .quantities import AnalysisProperty
+
 
 try:
     import sqlalchemy
@@ -639,26 +636,10 @@ class Maps(MarvinToolsClass, NSAMixIn, DAPallMixIn):
                 The channels to use.
 
         """
-
-        # TODO extend to allow for different property names and make channel optional
         map_1 = self.getMap(property_name, channel=channel_1)
         map_2 = self.getMap(property_name, channel=channel_2)
 
-        map_1.value /= map_2.value
-
-        # TODO: do the error propogation (BHA)
-        map_1.ivar = None
-
-        map_1.mask &= map_2.mask
-
-        map_1.channel = '{0}/{1}'.format(channel_1, channel_2)
-
-        if map_1.unit != map_2.unit:
-            map_1.unit = '{0}/{1}'.format(map_1.unit, map_2.unit)
-        else:
-            map_1.unit = ''
-
-        return map_1
+        return map_1 / map_2
 
     def is_binned(self):
         """Returns True if the Maps is not unbinned."""
