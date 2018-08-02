@@ -72,6 +72,7 @@ Components
 * :doc:`query`
 * :doc:`results`
 * :doc:`tools/plate`
+* :doc:`tools/image`
 * :doc:`tools/cube`
 * :doc:`tools/modelcube`
 * :doc:`tools/maps`
